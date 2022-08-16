@@ -8,6 +8,15 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     const newWithdrawAmountString = withdrawField.value;
     const newWithdrawAmount = parseFloat(newWithdrawAmountString);
 
+    // step-7: clear the input fields
+    withdrawField.value = '';
+
+    // error handling input
+    if (isNaN(newWithdrawAmount)) {
+        alert('Please Provide a valid input!!!');
+        return;
+    }
+
     //Step-3 : get the current withdraw amount.
     const withdrawBox = document.getElementById('withdraw-box');
     const currentWithdrawAmountString = withdrawBox.innerText;
@@ -18,9 +27,10 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     const previousBalanceString = balanceBox.innerText;
     const previousBalance = parseFloat(previousBalanceString);
 
+
     // substep : Error handling
     if (newWithdrawAmount > previousBalance) {
-        alert('You have not sufficient amount.')
+        alert('You have not sufficient Balance.')
         return;
     }
 
@@ -31,8 +41,5 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
     //S-6 : set/update the value on balance.
     const currentBalance = previousBalance - newWithdrawAmount;
     balanceBox.innerText = currentBalance;
-
-    // step-7: clear the input fields
-    withdrawField.value = '';
 
 })
